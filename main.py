@@ -22,16 +22,20 @@ from my_bot import MyBot
 
 
 def main():
-	chapter_example = "ch7"
+    # chapter_example = "ch8"
+    chapter_example = input("Enter 7, 8, 9 or 11: ")
+    if chapter_example not in ("7", "8", "9", "11"):
+        raise ValueError("Not a valid number")
+    chapter_example = "ch" + chapter_example
 
-	if chapter_example == "ch7":
-		run_ch7_example()
-	elif chapter_example == "ch8":
-		run_ch8_example("data/config.ini", "data/quotes.json")
-	elif chapter_example == "ch9":
-		run_ch9_example()
-	elif chapter_example == "ch11":
-		run_ch11_example()
+    if chapter_example == "ch7":
+        run_ch7_example()
+    elif chapter_example == "ch8":
+        run_ch8_example("data/config.ini", "data/quotes.json")
+    elif chapter_example == "ch9":
+        run_ch9_example()
+    elif chapter_example == "ch11":
+        run_ch11_example()
 
 if __name__ == "__main__":
-	main()
+    main()

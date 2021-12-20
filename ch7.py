@@ -2,23 +2,28 @@
 Exemple des notions du chapitre 7.
 """
 
+from dotenv import load_dotenv
+import os
+from typing import Callable
+from twitch_bot import TwitchBot
 
-from chatbot import *
-from twitch_bot import *
+load_dotenv()
 
 
-def build_say_hi_callback(bot, message):
-	# TODO: Créer et retourner une fonction qui prend un paramètre (ignoré).
-	#       Cette fonction envoie `message` dans le chat à l'aide de la méthode `send_privmsg` du paramètre `bot`.
-	pass
+def build_say_hi_callback(bot: TwitchBot, message: str) -> Callable[[str], None]:
+    def callback(_: str) -> None:
+        bot.send_privmsg(message)
+
+    return callback
+
 
 def run_ch7_example():
-	bot = TwitchBot("logs")
-	# TODO: Construire le callback avec le bot et un message de votre choix.
-	callback = ...
-	# TODO: Enregister le callback sous la commande "say_hi".
-	bot.register_command(...)
-	# TODO: Mettre votre jeton (incluant le "oauth:") et le nom du compte Twitch associé.
-	bot.connect_and_join("oauth:...", "...", "chosson")
-	bot.run()
+    bot = TwitchBot("logs")
+    callback = build_say_hi_callback(bot, "hi you betlog")
+    bot.register_command("say_hi", callback)
 
+    password = os.environ["password"]
+    nickname = os.environ["nickname"]
+    channel = os.environ["channel"]
+    bot.connect_and_join(password, nickname, channel)
+    bot.run()
