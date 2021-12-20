@@ -26,11 +26,11 @@ pour fermer votre espace de travail sur Gitpod
     * https://git-scm.com/book/fr/v2
     * https://git-scm.com/docs
     * https://github.github.com/training-kit/
-    
+
 
 ### En préparation à une séance
 1. Cloner le répertoire de GitHub sur votre ordinateur
-    * à partir de GitHub [(instructions à suivre)](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 
+    * à partir de GitHub [(instructions à suivre)](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
     * ou à partir de PyCharm [(instructions à suivre)](https://www.jetbrains.com/help/pycharm/opening-your-project-for-the-first-time.html#git)
 2. Ouvrir l'exercice dans PyCharm [(instructions à suivre)](https://www.jetbrains.com/help/pycharm/importing-project-from-existing-source-code.html#existing-sources)
 3. Créer l'environnement [conda à partir du fichier environment.yml](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
@@ -41,7 +41,7 @@ pour fermer votre espace de travail sur Gitpod
             * Sélectionner Import
             * Choisir le fichier environment.yml
     * ou avec un [terminal](https://www.jetbrains.com/help/pycharm/terminal-emulator.html)
-    
+
         ```
         cd C:\chemin\vers\le\répertoire\de\l\exercice\Exercice-NomEtudiant\
         conda env create --force --file environment.yml --name nom_exercice
@@ -49,7 +49,7 @@ pour fermer votre espace de travail sur Gitpod
         ```
 3. Choisir l'environnement conda créé plutôt comme Python Interpreter dans votre projet PyCharm
     * [instructions à suivre](https://www.jetbrains.com/help/pycharm/conda-support-creating-conda-virtual-environment.html)
-    * choisir Existing environnement 
+    * choisir Existing environnement
 ### Au début et lors d'une séance
 1. Lire le [README.md](README.md)
 2. Compléter l'exercice dans PyCharm

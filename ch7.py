@@ -1,10 +1,11 @@
 """
 Exemple des notions du chapitre 7.
 """
-
-from dotenv import load_dotenv
 import os
 from typing import Callable
+
+from dotenv import load_dotenv
+
 from twitch_bot import TwitchBot
 
 load_dotenv()

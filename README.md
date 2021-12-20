@@ -144,4 +144,3 @@ Dans cet exemple, le bot utilise le compte *chosson_bot2* pour communiquer.
 On enregistre une commande `!quote` à laquelle le bot répond en choisissant une citation aléatoire dans celles chargées du JSON (comme dans les exemples précédents). Toutefois, on peut choisir la catégorie d'où provient la citation. Si on n'en fournit pas, une catégorie au hasard est choisie (même comportement que les exemples précédents).
 
 <img src="doc/assets/quote_example.png">
-

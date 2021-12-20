@@ -1,13 +1,12 @@
 """
 Exemple des notions du chapitre 8.
 """
-
-
 import configparser
 import json
 import random
 from collections import namedtuple
-from typing import Dict, List
+from typing import Dict
+from typing import List
 
 from twitch_bot import TwitchBot
 

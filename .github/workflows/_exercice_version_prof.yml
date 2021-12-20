@@ -3,7 +3,7 @@ name: Update student files | _exercice_version_prof,py
 on:
   workflow_dispatch:
   push:
-    paths: 
+    paths:
       - _exercice_version_prof.py
 
 jobs:
@@ -15,10 +15,10 @@ jobs:
       - name: Update student files | _exercice_version_prof,py
         run: |
           source settings/variables.txt
-          
+
           python3 -m pip install -q setuptools
           python3 -m pip install -q git+"$classroom_tools_url"
-          
+
           python3 -m classroom_tools.student_repositories.sync_with_template_repository \
             --template_repo_fullname="$GITHUB_REPOSITORY" \
             --token="${{ secrets.REPO_WORKFLOW_PAT }}" \
