@@ -8,8 +8,8 @@ from collections import namedtuple
 from typing import Dict
 from typing import List
 
+from chatbot import Chatbot
 from twitch_bot import TwitchBot
-
 
 # Un named tuple est une façon simple de créer des tuples avec des éléments nommés
 # (plutôt que juste des index)
@@ -31,8 +31,12 @@ def load_quotes(filename: str) -> Dict[str, List[str]]:
 
 
 def build_quotes_callback(bot: TwitchBot, quotes: Dict[str, List[str]]):
-    def callback(*args):
-        random_category = random.choice(list(quotes.keys()))
+    def callback(command: Chatbot.Command):
+        random_category = command.params or random.choice(list(quotes.keys()))
+        if random_category not in quotes:
+            bot.send_privmsg("This character doesn't exist dumdum")
+            return
+
         random_quote = random.choice(quotes[random_category])
         bot.send_privmsg(random_quote)
 

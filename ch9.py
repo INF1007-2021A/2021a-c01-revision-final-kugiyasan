@@ -3,11 +3,8 @@ Exemple des notions du chapitre 9.
 """
 import argparse
 import sys
-from collections import namedtuple
 
-from ch8 import *
-from chatbot import *
-from twitch_bot import *
+from ch8 import run_ch8_example
 
 
 def parse_args():
@@ -15,30 +12,27 @@ def parse_args():
         description="Run custom chatbot.", epilog="Made by me."
     )
     arg_parser.add_argument(
-        # TODO: Ajouter l'option --config-file
-        # TODO: mettre la destination à config_file
-        # TODO: Chosir le bon type de nargs (https://docs.python.org/3/library/argparse.html#nargs)
+        "--config-file",
+        dest="config_file",
         action="store",
-        nargs=...,
-        # TODO: L'argument doit être obligatoire.
+        nargs=1,
         type=str,
         metavar="INI_FILE",
         help="The INI file containing login and target chat information.",
     )
     arg_parser.add_argument(
-        # TODO: Ajouter l'option --quotes-file
-        # TODO: mettre la destination à quotes_file
-        # TODO: Chosir le bon type de nargs
+        "--quotes-file",
+        dest="quotes_file",
         action="store",
-        nargs=...,
-        # TODO: L'argument doit être obligatoire.
+        nargs=1,
         type=str,
         metavar="JSON_FILE",
-        help="The JSON file containing the various quotes supported by the !quote command.",
+        help="The JSON file containing the various quotes "
+        "supported by the !quote command.",
     )
     return arg_parser.parse_args(sys.argv[1:])
 
 
 def run_ch9_example():
     opts = parse_args()
-    run_ch8_example("data/config.ini", "data/quotes.json")
+    run_ch8_example(opts.config_file[0], opts.quotes_file[0])

@@ -2,23 +2,31 @@
 Un chatbot qui s'identifie et donnes des citations aléatoires.
 """
 import random
+from typing import Dict
+from typing import List
 
-from chatbot import *
-from twitch_bot import *
+from chatbot import Chatbot
+from twitch_bot import TwitchBot
 
 
 class MyBot(TwitchBot):
-    def __init__(self, logs_folder, quotes):
-        # Construire la classe parent en lui passant le dossier de journaux.
-        # On garde le dictionnaire de citations (paramètre `quotes`) dans une variable d'instance.
-        pass
+    __slots__ = ("quotes",)
 
-    # TODO: Ajouter une commande "say_hi" (à l'aide du décorateur TwitchBot.command) qui répond avec un message de la forme:
-    #       "My name is <nom-du-bot>. You killed my father. Prepare to die.", où <nom-du-bot> est le nom du compte utilisé par le chatbot.
-    #       Indice : Dans la méthode connect_and_join de TwitchBot, le nom (nickname) du bot est gardé comme attribut.
+    def __init__(self, logs_folder: str, quotes: Dict[str, List[str]]) -> None:
+        super().__init__(logs_folder)
+        self.quotes = quotes
 
-    # TODO: Ajouter une commande "quote" qui répond de trois façons selon ce qui suit le nom de la commande dans le message.
-    # Si un nom de catégorie est donné (on trouve les paramètres de la commande dans cmd.params) :
-    # Si la catégorie est connue, on envoie au hasard une citation venant de cette catégorie si elle est connue, sinon
-    # Sinon, on envoie un message disant que la catégorie est inconnue (ex. "Unrecognized category 'la_catégorie'")
-    # Si aucune catégorie n'est fournie, on choisit au hasard une catégorie puis une citation (comme dans l'exemple du chapitre 8)
+    @TwitchBot.new_command
+    def say_hi(self, cmd: Chatbot.Command) -> None:
+        txt = f"My name is {self.nickname}. You killed my father. Prepare to die."
+        self.send_privmsg(txt)
+
+    @TwitchBot.new_command
+    def quote(self, cmd: Chatbot.Command) -> None:
+        random_category = cmd.params or random.choice(list(self.quotes.keys()))
+        if random_category not in self.quotes:
+            self.send_privmsg("This character doesn't exist dumdum")
+            return
+
+        random_quote = random.choice(self.quotes[random_category])
+        self.send_privmsg(random_quote)

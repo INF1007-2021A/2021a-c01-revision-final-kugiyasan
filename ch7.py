@@ -6,13 +6,16 @@ from typing import Callable
 
 from dotenv import load_dotenv
 
+from chatbot import Chatbot
 from twitch_bot import TwitchBot
 
 load_dotenv()
 
 
-def build_say_hi_callback(bot: TwitchBot, message: str) -> Callable[[str], None]:
-    def callback(_: str) -> None:
+def build_say_hi_callback(
+    bot: TwitchBot, message: str
+) -> Callable[[Chatbot.Command], None]:
+    def callback(_: Chatbot.Command) -> None:
         bot.send_privmsg(message)
 
     return callback
